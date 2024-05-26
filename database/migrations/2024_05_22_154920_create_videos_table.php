@@ -23,6 +23,7 @@ return new class extends Migration
             $table->integer('like')->default(0);
             $table->integer('dis-like')->default(0);
             $table->integer('view')->default(0);
+            $table->string('url');
             $table->timestamps();
         });
     }

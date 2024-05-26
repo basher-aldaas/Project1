@@ -22,7 +22,7 @@ return new class extends Migration
             $table->string('poster');
             $table->integer('hour')->nullable();
             $table->text('requirements');
-            $table->float('valuation');
+            $table->float('valuation')->nullable()->default(0);
             $table->float('price');
             $table->timestamps();
         });

@@ -8,6 +8,7 @@ use App\Http\Requests\Auth\UserRegisterRequest;
 use App\Http\Responses\Response;
 use App\Services\UserService;
 use Illuminate\Http\JsonResponse;
+use Illuminate\Support\Facades\Storage;
 use Throwable;
 
 class AuthController extends Controller
@@ -23,7 +24,11 @@ class AuthController extends Controller
     {
         $data = [];
         try {
-            $data = $this->userService->register($request->validated());
+            $imagePath = $request->file('image')->store('images' , 'public');
+            $imageUrl = Storage::url($imagePath);
+            $validatedData = $request->validated();
+            $validatedData['image'] = $imageUrl;
+            $data = $this->userService->register($validatedData);
             return Response::Success($data['user'],$data['message']);
 
         }catch (Throwable $th){
