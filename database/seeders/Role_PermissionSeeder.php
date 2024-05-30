@@ -51,7 +51,7 @@ class Role_PermissionSeeder extends Seeder
             'remember_token' => Str::random(10),
             'birthday'=>fake()->date(),
             'address'=>fake()->address(),
-            'type'=>fake()->boolean,
+            'type'=>fake()->randomElement(['admin']),
             'image'=>fake()->text(30),
             'wallet'=>fake()->randomDigit(),
         ]);
@@ -69,7 +69,7 @@ class Role_PermissionSeeder extends Seeder
             'remember_token' => Str::random(10),
             'birthday'=>fake()->date(),
             'address'=>fake()->address(),
-            'type'=>fake()->boolean,
+            'type'=>fake()->randomElement(['teacher']),
             'image'=>fake()->text(30),
             'wallet'=>fake()->randomDigit(),
         ]);
@@ -87,7 +87,7 @@ class Role_PermissionSeeder extends Seeder
             'remember_token' => Str::random(10),
             'birthday'=>fake()->date(),
             'address'=>fake()->address(),
-            'type'=>fake()->boolean,
+            'type'=>fake()->randomElement(['student']),
             'image'=>fake()->text(30),
             'wallet'=>fake()->randomDigit(),
         ]);

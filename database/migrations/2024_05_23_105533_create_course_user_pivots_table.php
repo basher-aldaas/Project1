@@ -23,6 +23,7 @@ return new class extends Migration
                 ->cascadeOnUpdate();
             $table->boolean('paid')->default(0);
             $table->boolean('favorite')->default(0);
+            $table->float('rate')->default(0);
             $table->timestamps();
         });
     }

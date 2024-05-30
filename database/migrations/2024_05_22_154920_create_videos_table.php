@@ -19,10 +19,11 @@ return new class extends Migration
                 ->cascadeOnUpdate();
             $table->string('title');
             $table->text('description')->nullable();
-            $table->float('duration')->nullable();
+            $table->string('duration')->nullable();
             $table->integer('like')->default(0);
             $table->integer('dis-like')->default(0);
             $table->integer('view')->default(0);
+            $table->string('url');
             $table->timestamps();
         });
     }

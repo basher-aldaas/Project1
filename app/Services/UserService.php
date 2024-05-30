@@ -21,7 +21,7 @@ class UserService
                 'birthday' => $request['birthday'],
                 'address' => $request['address'],
                 'type' => $request['type'],
-                // 'image'=> $request['image'],
+                'image'=> $request['image'],
             ]);
             $studentRole = Role::query()
                 ->where('name', 'student')
@@ -34,7 +34,7 @@ class UserService
             $user = User::query()->find($user['id']);
             $user = $this->appendRolesAndPermissions($user);
             $user['token'] = $user->createToken("token")->plainTextToken;
-            $message = 'Your created successfully';
+            $message = 'user created successfully';
             return [
                 'user' => $user,
                 'message' => $message,
@@ -48,7 +48,7 @@ class UserService
                 'birthday' => $request['birthday'],
                 'address' => $request['address'],
                 'type' =>'teacher',
-                // 'image'=> $request['image'],
+                'image'=> $request['image'],
             ]);
 
             $teacherRole = Role::query()->where('name', 'teacher')->first();
@@ -60,7 +60,7 @@ class UserService
             $user = User::query()->find($user['id']);
             $user = $this->appendRolesAndPermissions($user);
             $user['token'] = $user->createToken("token")->plainTextToken;
-            $message = 'Your created successfully';
+            $message = 'user created successfully';
             return [
                 'user' => $user,
                 'message' => $message,
@@ -119,7 +119,7 @@ class UserService
     }
 
     //function to add roles and permissions to user array
-    public function appendRolesAndPermissions($user) : array
+    public function appendRolesAndPermissions($user)
     {
         $roles=[];
         foreach ($user->roles as $role){
