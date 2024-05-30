@@ -1,13 +1,10 @@
 <?php
 
-namespace App\Http\Requests\Auth;
+namespace App\Http\Requests\ResetCodePassword;
 
-use App\Http\Responses\Response;
-use Illuminate\Contracts\Validation\Validator;
 use Illuminate\Foundation\Http\FormRequest;
-use Illuminate\Validation\ValidationException;
 
-class UserLoginRequest extends FormRequest
+class UserResetPassword extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -22,18 +19,11 @@ class UserLoginRequest extends FormRequest
      *
      * @return array<string, \Illuminate\Contracts\Validation\ValidationRule|array<mixed>|string>
      */
-    //make validation for login page
     public function rules(): array
     {
         return [
-            'email' => ['required','email'],
+            'code' => ['required','string','exists:reset_code_passwords'],
             'password' => ['required','confirmed','min:8'],
         ];
-    }
-
-    //This function to get the wrong validation with my template
-    protected function failedValidation(Validator $validator)
-    {
-        throw new ValidationException($validator, Response::Validation([],$validator->errors()));
     }
 }

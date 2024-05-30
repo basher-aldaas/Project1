@@ -43,7 +43,7 @@ class Handler extends ExceptionHandler
      */
     public function register(): void
     {
-        $this->reportable(function (AccessDeniedHttpException $e,$request) {
+        $this->renderable(function (AccessDeniedHttpException $e,$request) {
             return Response::Error('',
                 'You do not have the required authorization',
                 403

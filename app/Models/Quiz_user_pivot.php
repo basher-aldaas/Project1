@@ -10,6 +10,8 @@ class Quiz_user_pivot extends Model
 {
     use HasFactory;
     protected $fillable=[
+        'user_id',
+        'quiz_id',
         'mark',
         'type',
     ];

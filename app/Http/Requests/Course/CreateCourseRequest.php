@@ -30,9 +30,10 @@ class CreateCourseRequest extends FormRequest
             'name' =>['required'],
             'content' =>['required'],
             'poster' =>['required'],
-            'hour' =>['required','number'],
+            'hour' =>['required'],
             'requirements' =>['required'],
-            'price' =>['required','number'],
+            'price' =>['required'],
+            //'valuation' => []
         ];
     }
 

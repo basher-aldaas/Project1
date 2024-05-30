@@ -12,12 +12,14 @@ class Course extends Model
 {
     use HasFactory;
     protected $fillable=[
+        'subject_id',
         'name',
         'content',
         'poster',
         'hour',
         'requirements',
         'price',
+        'valuation',
 
     ];
 
