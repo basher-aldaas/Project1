@@ -25,6 +25,7 @@ class VideoFactory extends Factory
             'like'=>fake()->randomDigit(),
             'dis-like'=>fake()->randomDigit(),
             'view'=>fake()->randomDigit(),
+            'url'=>fake()->text(),
         ];
     }
 }

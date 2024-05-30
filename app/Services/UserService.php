@@ -26,6 +26,7 @@ class UserService
                 'password' => bcrypt($request['password']),
                 'birthday' => $request['birthday'],
                 'address' => $request['address'],
+<<<<<<< HEAD
                 'type' => 'admin',
                 'image'=> $request['image'],
             ]);
@@ -69,6 +70,10 @@ class UserService
                 'address' => $request['address'],
                 'type' => 'student',
                  'image'=> $request['image'],
+=======
+                'type' => $request['type'],
+                'image'=> $request['image'],
+>>>>>>> 5f4ddeb85994744d46e3bca82b42359cff2435b1
             ]);
             $studentRole = Role::query()
                 ->where('name', 'student')
@@ -81,7 +86,26 @@ class UserService
             $user = User::query()->find($user['id']);
             $user = $this->appendRolesAndPermissions($user);
             $user['token'] = $user->createToken("token")->plainTextToken;
+<<<<<<< HEAD
             $message = 'Your created successfully';
+=======
+            $message = 'user created successfully';
+            return [
+                'user' => $user,
+                'message' => $message,
+            ];
+        }else{
+            $user=User::query()->create([
+                'full_name' => $request['full_name'],
+                'email' => $request['email'],
+                'phone' => $request['phone'],
+                'password' => bcrypt($request['password']),
+                'birthday' => $request['birthday'],
+                'address' => $request['address'],
+                'type' =>'teacher',
+                'image'=> $request['image'],
+            ]);
+>>>>>>> 5f4ddeb85994744d46e3bca82b42359cff2435b1
 
             //sending welcome email
 
@@ -89,6 +113,17 @@ class UserService
             $data = $request['full_name'];
             Event::dispatch(new WelcomeEvent($welcome,$data));
 
+<<<<<<< HEAD
+=======
+            $user = User::query()->find($user['id']);
+            $user = $this->appendRolesAndPermissions($user);
+            $user['token'] = $user->createToken("token")->plainTextToken;
+            $message = 'user created successfully';
+            return [
+                'user' => $user,
+                'message' => $message,
+            ];
+>>>>>>> 5f4ddeb85994744d46e3bca82b42359cff2435b1
         }
         return [
             'user' => $user ?? [],

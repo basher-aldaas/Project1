@@ -3,9 +3,14 @@
 use App\Http\Controllers\Auth\AuthController;
 use App\Http\Controllers\Auth\UserOperationController;
 use App\Http\Controllers\CourseController;
+<<<<<<< HEAD
 use App\Http\Controllers\Quiz\AnswerController;
 use App\Http\Controllers\Quiz\QuestionController;
 use App\Http\Controllers\Quiz\QuizController;
+=======
+use App\Http\Controllers\SubjectController;
+use App\Http\Controllers\VideoController;
+>>>>>>> 5f4ddeb85994744d46e3bca82b42359cff2435b1
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -42,9 +47,22 @@ Route::controller(AuthController::class)->group(function (){
 Route::middleware('auth:sanctum')->group(function (){
     Route::prefix('course')->controller(CourseController::class)->group(function (){
         Route::get('show_courses/{subject_id}','show_courses')->name('course.show')->middleware('can:show.course');
+<<<<<<< HEAD
         Route::post('create_course','create_course')->name('create.course')->middleware('can:create.course');
         Route::post('update_course/{id}','update_course')->name('update.course')->middleware('can:update.course');
         Route::post('delete_course/{id}','delete_course')->name('delete.course')->middleware('can:delete.course');
+=======
+        Route::get('teacher_courses' , 'teacher_show_courses')->name('teacher.course');
+        Route::get('myspace_courses' , 'myspace_course')->name('myspace.course');
+        Route::post('create_course','create_course')->name('create.course')->middleware('can:create.course');
+        Route::post('update_course/{id}','update_course')->name('update.course')->middleware('can:update.course');
+        Route::delete('delete_course/{id}','delete_course')->name('delete.course')->middleware('can:delete.course');
+        Route::post('paid_course/{id}','paid_for_course')->name('paid.course');
+        Route::post('add_to_favorite/{course_id}' , 'add_to_favorite')->name('add_to_favorite.course');
+        Route::post('remove_from_favorite/{course_id}' , 'remove_from_favorite')->name('remove_from_favorite.course');
+        Route::get('show_favorite' , 'show_favorite')->name('show_favorite.course');
+        Route::post('add_rate_for_course/{course_id}' , 'add_rate_for_course')->name('add_rate_for_course.course');
+>>>>>>> 5f4ddeb85994744d46e3bca82b42359cff2435b1
 
     });
 
@@ -61,6 +79,7 @@ Route::middleware('auth:sanctum')->group(function (){
     });
 });
 
+<<<<<<< HEAD
 
 //Routes for quizzes and questions and answers
 Route::middleware('auth:sanctum')->group(function (){
@@ -95,3 +114,25 @@ Route::middleware('auth:sanctum')->group(function (){
 
 
 Route::get('sh',[QuestionController::class,'sh'])->middleware('auth:sanctum');
+=======
+//Routes for video operation
+Route::middleware('auth:sanctum')->group(function (){
+    Route::prefix('video')->controller(VideoController::class)->group(function (){
+        Route::get('show_videos/{course_id}','show_videos')->name('show.video')->middleware('can:show.video');
+        Route::post('create_video/{course_id}','create_video')->name('create.video')->middleware('can:create.video');
+        Route::post('update_video/{id}','update_video')->name('update.video')->middleware('can:update.video');
+        Route::post('delete_video/{id}','delete_video')->name('delete.video')->middleware('can:delete.video');
+
+    });
+
+});
+
+//show : category section subjects
+Route::middleware('auth:sanctum')->group(function(){
+    Route::controller(SubjectController::class)->group(function(){
+        Route::get('section' , 'show_sections');
+        Route::get('category/{section_id}' , 'show_categories');
+        Route::get('subject/{category_id}' , 'show_subjects');
+    });
+});
+>>>>>>> 5f4ddeb85994744d46e3bca82b42359cff2435b1

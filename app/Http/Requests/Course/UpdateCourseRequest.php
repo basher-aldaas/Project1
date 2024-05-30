@@ -29,7 +29,7 @@ class UpdateCourseRequest extends FormRequest
             'subject_id' =>[],
             'name' =>[],
             'content' =>[],
-            'poster' =>[],
+            'poster' =>['image'],
             'hour' =>[],
             'requirements' =>[],
             'price' =>[],
