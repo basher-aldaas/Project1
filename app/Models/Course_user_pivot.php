@@ -9,7 +9,12 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
 class Course_user_pivot extends Model
 {
     use HasFactory;
-
+    protected $fillable = [
+      'user_id' ,
+      'course_id',
+      'paid',
+      'favorite',
+    ];
     public function user() : belongsTo
     {
         return $this->belongsTo(User::class);

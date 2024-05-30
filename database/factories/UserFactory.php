@@ -26,7 +26,7 @@ class UserFactory extends Factory
             'remember_token' => Str::random(10),
             'birthday'=>fake()->date(),
             'address'=>fake()->address(),
-            'type'=>fake()->boolean,
+            'type'=>fake()->randomElement(['student' , 'teacher']),
             'image'=>fake()->text(30),
             'wallet'=>fake()->randomDigit(),
         ];
