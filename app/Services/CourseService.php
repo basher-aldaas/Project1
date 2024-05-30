@@ -4,8 +4,16 @@ namespace App\Services;
 
 use App\Models\Course;
 use App\Models\Course_user_pivot;
+<<<<<<< HEAD
 use App\Models\User;
 use App\Models\User_video_pivot;
+=======
+<<<<<<< HEAD
+=======
+use App\Models\User;
+use App\Models\User_video_pivot;
+>>>>>>> 5f4ddeb85994744d46e3bca82b42359cff2435b1
+>>>>>>> 39c884d2eaa72acbef786d005209749c741d1ed1
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use function PHPUnit\Framework\isEmpty;
@@ -41,7 +49,7 @@ class CourseService
 
     //show all courses for special subject
     public function show_courses($subject_id) :array
-    {
+    { 
             $courses = Course::query()
                 ->where('subject_id',$subject_id)
                 ->get();
@@ -100,11 +108,27 @@ class CourseService
                 'poster' => $request['poster'],
                 'requirements' => $request['requirements'],
                 'price' => $request['price'],
+                //'valuation' => $request['valuation']
             ]);
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+
+            $course_user = Course_user_pivot::query()->create([
+                'user_id' => Auth::id(),
+                'course_id' => $course->id,
+            ]);
+
+=======
+>>>>>>> 39c884d2eaa72acbef786d005209749c741d1ed1
             Course_user_pivot::query()->create([
                 'user_id' => Auth::id(),
                 'course_id' => $course->id,
             ]);
+<<<<<<< HEAD
+=======
+>>>>>>> 5f4ddeb85994744d46e3bca82b42359cff2435b1
+>>>>>>> 39c884d2eaa72acbef786d005209749c741d1ed1
             $message = 'Course created successfully';
             $code=200;
         }else{
@@ -122,6 +146,7 @@ class CourseService
     //update special course for teacher role or any course for admin role
     public function update_course($request,$id) : array
     {
+<<<<<<< HEAD
 
         $course=Course::query()->find($id);
         if (!is_null($course)) {
@@ -146,6 +171,76 @@ class CourseService
                     $code=403;
                 }
 
+=======
+<<<<<<< HEAD
+        $course=Course::query()->find($id);
+        if (!is_null($course)) {
+                $any = Course_user_pivot::query()->where('paid',0)->where('course_id',$id)->first();
+                    if (!is_null($any)) {
+                    if ((Auth::user()->hasRole('teacher') && Auth::id() == $any->user_id) || Auth::user()->hasRole('admin')) {
+                        Course::query()->find($id)->update([
+                            'subject_id' => $request['subject_id'] ?? $course['subject_id'],
+                            'name' => $request['name'] ?? $course['name'],
+                            'content' => $request['content'] ?? $course['content'],
+                            'poster' => $request['poster'] ?? $course['poster'],
+                            'hour' => $request['hour'] ?? $course['hour'],
+                            'requirements' => $request['requirements'] ?? $course['requirements'],
+                            'price' => $request['price'] ?? $course['price'],
+                        ]);
+                        $course=Course::query()->find($id);
+                        $message = 'Updated course successfully';
+                        $code=200;
+                    } else {
+                        $course = [];
+                        $message = 'you dont have permission for updating this course';
+                        $code=403;
+                    }
+
+                }else{
+                        $course = [];
+                        $message = 'This course does not belongs to you to delete it or not found in data';
+                        $code = 403;
+                    }
+        }
+            else{
+            $course = [];
+            $message = 'This course not found';
+            $code=404;
+        }
+
+        return [
+            'course' => $course,
+            'message' => $message,
+            'code' => $code,
+        ];
+    }
+=======
+>>>>>>> 5f4ddeb85994744d46e3bca82b42359cff2435b1
+
+        $course=Course::query()->find($id);
+        if (!is_null($course)) {
+            $any = Course_user_pivot::query()->where('paid',0)->where('course_id',$id)->first();
+            if (!is_null($any)) {
+                if ((Auth::user()->hasRole('teacher') && Auth::id() == $any->user_id) || Auth::user()->hasRole('admin')) {
+                    Course::query()->find($id)->update([
+                        'subject_id' => $request['subject_id'] ?? $course['subject_id'],
+                        'name' => $request['name'] ?? $course['name'],
+                        'content' => $request['content'] ?? $course['content'],
+                        'poster' => $request['poster'] ?? $course['poster'],
+                        'hour' => $request['hour'] ?? $course['hour'],
+                        'requirements' => $request['requirements'] ?? $course['requirements'],
+                        'price' => $request['price'] ?? $course['price'],
+                    ]);
+                    $course=Course::query()->find($id);
+                    $message = 'Updated course successfully';
+                    $code=200;
+                } else {
+                    $course = [];
+                    $message = 'you dont have permission for updating this course';
+                    $code=403;
+                }
+
+>>>>>>> 39c884d2eaa72acbef786d005209749c741d1ed1
             }else{
                 $course = [];
                 $message = 'This course does not belongs to you to delete it or not found in data';
@@ -200,13 +295,24 @@ class CourseService
             'code' => $code,
         ];
     }
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+=======
+>>>>>>> 39c884d2eaa72acbef786d005209749c741d1ed1
 
     //paid for course
     public function paid_course($courseId):array
     {
+<<<<<<< HEAD
         $course = Course::query()->where('id' , $courseId)->first();//get course
 
         if ($course){
+=======
+
+        $course = Course::query()->where('id' , $courseId)->first();//get course
+
+>>>>>>> 39c884d2eaa72acbef786d005209749c741d1ed1
         $course_id_from_pivot = Course_user_pivot::query()->
         where('course_id' , $courseId)->pluck('course_id')->first();
 
@@ -299,11 +405,15 @@ class CourseService
                 $message = 'you have run out of founds';
                 $code = 403;
             }
+<<<<<<< HEAD
         }else{
             $course = [];
             $message = 'course not found';
             $code = 404;
         }
+=======
+
+>>>>>>> 39c884d2eaa72acbef786d005209749c741d1ed1
         return [
           'course' => $course,
           'message' => $message,
@@ -315,7 +425,11 @@ class CourseService
     public function add_to_favorite($course_id):array
     {
         $course = Course::query()->where('id' , $course_id)->first();//get course
+<<<<<<< HEAD
         if ($course){
+=======
+
+>>>>>>> 39c884d2eaa72acbef786d005209749c741d1ed1
         $course_id_from_pivot = Course_user_pivot::query()->
         where('course_id' , $course_id)->pluck('course_id')->first();
 
@@ -342,10 +456,13 @@ class CourseService
             $message = 'added successfully';
             $code = 200;
         }
+<<<<<<< HEAD
         }else{
             $message = 'course not found';
             $code = 404;
         }
+=======
+>>>>>>> 39c884d2eaa72acbef786d005209749c741d1ed1
         return [
             'course' => $course,
             'message' => $message,
@@ -454,6 +571,10 @@ class CourseService
             'code' => $code,
         ];
     }
+<<<<<<< HEAD
+=======
+>>>>>>> 5f4ddeb85994744d46e3bca82b42359cff2435b1
+>>>>>>> 39c884d2eaa72acbef786d005209749c741d1ed1
 
 
 }

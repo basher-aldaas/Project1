@@ -32,6 +32,6 @@ class DatabaseSeeder extends Seeder
             Course_user_pivotSeeder::class,
             User_video_pivotSeeder::class,
             Role_PermissionSeeder::class,
-        ]);
+                    ]);
     }
 }

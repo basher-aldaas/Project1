@@ -19,6 +19,7 @@ class Course extends Model
         'hour',
         'requirements',
         'price',
+        'valuation',
 
     ];
 

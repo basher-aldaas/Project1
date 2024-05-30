@@ -11,6 +11,9 @@ use Illuminate\Database\Eloquent\Relations\HasMany;
 class Quiz extends Model
 {
     use HasFactory;
+    protected $fillable = [
+        'course_id',
+    ];
 
     public function course() : belongsTo
     {
@@ -25,6 +28,12 @@ class Quiz extends Model
     public function users() : belongsToMany
     {
         return $this->belongsToMany(User::class);
+    }
+
+    //relation to get quiz with his creater information (admin ,teacher)
+    public function user() : belongsTo
+    {
+        return $this->belongsTo(Quiz_user_pivot::class);
     }
 
 }

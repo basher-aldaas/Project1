@@ -15,10 +15,10 @@ return new class extends Migration
             $table->id();
             $table->string('full_name');
             $table->string('email')->unique();
-            $table->string('phone')->unique();
+            $table->string('phone');
             $table->string('password');
-            $table->date('birthday');
-            $table->string('address');
+            $table->date('birthday')->nullable();
+            $table->string('address')->nullable();
             $table->string('type')->nullable()->default('student');
             $table->string('image')->nullable();
             $table->float('wallet')->default(0);

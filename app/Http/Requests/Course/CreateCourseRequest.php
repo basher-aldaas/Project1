@@ -30,9 +30,23 @@ class CreateCourseRequest extends FormRequest
             'subject_id' =>['required'],
             'name' =>['required'],
             'content' =>['required'],
+<<<<<<< HEAD
             'poster' =>['image'],
             'requirements' =>['required'],
             'price' =>['required'],
+=======
+<<<<<<< HEAD
+            'poster' =>['required'],
+            'hour' =>['required'],
+            'requirements' =>['required'],
+            'price' =>['required'],
+            //'valuation' => []
+=======
+            'poster' =>['image'],
+            'requirements' =>['required'],
+            'price' =>['required'],
+>>>>>>> 5f4ddeb85994744d46e3bca82b42359cff2435b1
+>>>>>>> 39c884d2eaa72acbef786d005209749c741d1ed1
         ];
     }
 

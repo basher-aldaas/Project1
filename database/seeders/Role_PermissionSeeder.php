@@ -5,6 +5,7 @@ namespace Database\Seeders;
 use App\Models\User;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
+use Illuminate\Support\Arr;
 use Illuminate\Support\Str;
 use Spatie\Permission\Models\Permission;
 use Spatie\Permission\Models\Role;
@@ -47,17 +48,28 @@ class Role_PermissionSeeder extends Seeder
             'email' => 'admin@example.com',
             'phone' => '+1.220.337.6304',
             'email_verified_at' => now(),
-            'password' => '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi', // password
+            'password' => '55555555', // password
             'remember_token' => Str::random(10),
             'birthday'=>fake()->date(),
             'address'=>fake()->address(),
+<<<<<<< HEAD
             'type'=>fake()->randomElement(['admin']),
+=======
+<<<<<<< HEAD
+            'type'=>'admin',
+=======
+            'type'=>fake()->randomElement(['admin']),
+>>>>>>> 5f4ddeb85994744d46e3bca82b42359cff2435b1
+>>>>>>> 39c884d2eaa72acbef786d005209749c741d1ed1
             'image'=>fake()->text(30),
             'wallet'=>fake()->randomDigit(),
         ]);
+
         $adminUser->assignRole($adminRole);
         $permissions=$adminRole->permissions()->pluck('name')->toArray();
         $adminUser->givePermissionTo($permissions);
+        $adminUser['token'] = $adminUser->createToken("token")->plainTextToken;
+
 
         //create teacher with role and permissions
         $teacherUser=User::factory()->create([
