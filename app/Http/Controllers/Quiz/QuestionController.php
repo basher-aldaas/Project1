@@ -65,46 +65,23 @@ class QuestionController extends Controller
         }
     }
 
-    //api to get question for special quiz
-    public function show_question() : jsonResponse
-    {
-        $data = [];
-        try {
-            $data = $this->quizService->show_quizzes();
-            return Response::Success($data['quiz'],$data['message'],$data['code']);
-
-        }catch (\Throwable $th){
-            $message=$th->getMessage();
-            return Response::Error($data,$message);
-
-        }
-    }
-
-
-
-    public function sh(){
+//    //api to get question for special quiz
+//    public function show_question() : jsonResponse
+//    {
+//        $data = [];
+//        try {
+//            $data = $this->quizService->show_quizzes();
+//            return Response::Success($data['quiz'],$data['message'],$data['code']);
+//
+//        }catch (\Throwable $th){
+//            $message=$th->getMessage();
+//            return Response::Error($data,$message);
+//
+//        }
+//    }
 
 
-            $quizzesUsers = Quiz_user_pivot::query()->where('type','teacher')->where('user_id',Auth::id())->get();
 
-            if (!$quizzesUsers->isEmpty()){
-
-            $quizzes = $quizzesUsers;
-            $message = 'Getting all your quizzes successfully';
-            $code = 200;
-            return $message;
-
-
-            } else {
-            $quizzes =[];
-            $message = 'You do not have any quiz';
-            $code = 404;
-                return $message;
-
-            }
-
-
-}
 
 
 

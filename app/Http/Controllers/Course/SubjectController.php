@@ -1,11 +1,11 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Course;
 
+use App\Http\Controllers\Controller;
 use App\Models\Category;
 use App\Models\Section;
 use App\Models\Subject;
-use Illuminate\Http\Request;
 
 class SubjectController extends Controller
 {

@@ -75,25 +75,33 @@ class UserOperationService
     {
 
         $student = User::query()->find($id);
-        if(!is_null($student) && $student->type == 'student'){
-            if(Auth::user()->hasRole('admin')){
+        if(!is_null($student)){
+            if (Auth::user()->hasRole('admin') ) {
+                if ($student->type == 'student') {
 
-                $data = $student;
-                $student->delete();
-                $message = 'Deleted successfully';
-                $code = 200;
+                    $data = $student;
+                    $student->delete();
+                    $message = 'Deleted successfully';
+                    $code = 200;
 
+                } else {
+
+                    $data = [];
+                    $message = 'This account belongs to teacher not student';
+                    $code = 403;
+
+                }
             }else{
 
-                $data = [];
+                    $data = [];
                 $message = 'You do not have permission to delete this account';
-                $code = 403;
+                    $code = 403;
 
-            }
+                }
 
         }else{
             $data = [];
-            $message = 'There is no account in this id or this account belongs to teacher not student';
+            $message = 'Not found ';
             $code =404;
 
         }
@@ -109,13 +117,21 @@ class UserOperationService
     public function delete_teacher($id) : array
     {
         $teacher = User::query()->find($id);
-        if(!is_null($teacher) && $teacher->type == 'teacher' ){
+        if(!is_null($teacher)){
             if(Auth::user()->hasRole('admin' )){
+                if ($teacher->type == 'teacher' ){
 
                 $data = $teacher;
                 $teacher->delete();
                 $message = 'Deleted successfully';
                 $code = 200;
+                } else {
+
+                    $data = [];
+                    $message = 'This account belongs to teacher not student';
+                    $code = 403;
+
+                }
             }else{
 
                 $data = [];
@@ -126,7 +142,7 @@ class UserOperationService
 
         }else{
             $data = [];
-            $message = 'There is no account in this id';
+            $message = 'Not found ';
             $code =404;
 
         }
@@ -151,13 +167,13 @@ class UserOperationService
                     'image' => $request['image'] ?? $user['image'],
             ]);
             $user=User::query()->find(Auth::id());
-            $message = 'Updated course successfully';
+            $message = 'Updated profile successfully';
             $code=200;
 
         } else {
 
              $user = [];
-             $message = 'Updating operation not for admin';
+             $message = 'Updating profile not for admin';
              $code=403;
 
         }

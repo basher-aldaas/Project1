@@ -26,15 +26,7 @@ class UserFactory extends Factory
             'remember_token' => Str::random(10),
             'birthday'=>fake()->date(),
             'address'=>fake()->address(),
-<<<<<<< HEAD
             'type'=>fake()->randomElement(['student' , 'teacher']),
-=======
-<<<<<<< HEAD
-            'type'=>fake()->randomElement(['student','teacher']),
-=======
-            'type'=>fake()->randomElement(['student' , 'teacher']),
->>>>>>> 5f4ddeb85994744d46e3bca82b42359cff2435b1
->>>>>>> 39c884d2eaa72acbef786d005209749c741d1ed1
             'image'=>fake()->text(30),
             'wallet'=>fake()->randomDigit(),
         ];

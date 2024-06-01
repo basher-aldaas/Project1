@@ -21,6 +21,7 @@ class DatabaseSeeder extends Seeder
             SectionSeeder::class,
             CategorySeeder::class,
             SubjectSeeder::class,
+            Role_PermissionSeeder::class,
             UserSeeder::class,
             CourseSeeder::class,
             VideoSeeder::class,
@@ -31,7 +32,6 @@ class DatabaseSeeder extends Seeder
             AnswerSeeder::class,
             Course_user_pivotSeeder::class,
             User_video_pivotSeeder::class,
-            Role_PermissionSeeder::class,
                     ]);
     }
 }
